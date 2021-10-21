@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube</title>
+    <link rel="icon" href="https://img.icons8.com/color/144/000000/youtube-play.png" type="image/icon type">
+   <link rel="stylesheet" href="youtube.css">
+</head>
+<body>
+    <!--Top Navbar -->
+    <nav>
+            <div id="navLeftPart">
+                <img style="cursor: pointer;" src="https://img.icons8.com/material-outlined/24/000000/menu--v3.png"/>
+                <div class="navic">
+                    <img style="width: 90px;" src="https://logos-world.net/wp-content/uploads/2020/04/YouTube-Logo.png">
+                </div>
+            </div>
+            <!-- navbar middle part -->
+            <div id="navMiddlePart">
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <input  oninput="debounce(this.value, 1000)" id="searchKeyword" type="text" placeholder="Search">
+                    <button  onclick="showSearchedResultVideo()"><img src="https://img.icons8.com/ios/25/000000/search--v1.png"/></button>
+                    <div  id="navMid">
+                        <img src="https://img.icons8.com/material-sharp/25/000000/microphone--v1.png"/>
+                    </div>
+                </div>
+                <div id="searchedResult">
+
+                </div>
+            </div>
+            <!-- navbar right part -->
+            <div id="navRightPart">
+                <div id="navR">
+                    <img src="https://img.icons8.com/ios/25/000000/video-call.png"/>
+                </div>
+                <img style="cursor: pointer" src="https://img.icons8.com/ios/25/000000/moleskine-icon.png"/>
+                <img style="cursor: pointer" src="https://img.icons8.com/ios/25/000000/appointment-reminders--v1.png"/>
+                <span id="acc"><button  style=" height: 30px; margin: 5px;padding: 4px;" onclick="signIn()" id="btn1">Login</button>
+                <button  style=" height: 30px; margin: 5px; padding: 2px;"onclick="signUp()" id="btn2">Signup</button></span>
+            </div>
+        <!-- </div> -->
+    </nav>
+    <div id="bodyBox">
+        <div id="sideBar">
+            <span>
+                <img style="width: 25px;" src="https://img.icons8.com/material-rounded/24/000000/home.png"/>
+                <p style="font-size: 12px;">Home</p>
+            </span>
+            <span>
+                <img style="width: 25px;" src="https://img.icons8.com/ios/50/000000/compass--v1.png"/>
+                <p style="font-size: 12px;">Explore</p>
+            </span>
+            <span>
+                <img style="width: 25px;" src="https://img.icons8.com/ios/50/000000/video-playlist.png"/>
+                <p style="font-size: 12px;">Subscriptions</p>
+            </span>
+            <span>
+                <img style="width: 25px;" src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/2x/external-history-instagram-flatart-icons-outline-flatarticons.png"/>
+                <p style="font-size: 12px;">History</p>
+            </span>
+            <span>
+                <img style="width: 25px;" src="https://img.icons8.com/ios/72/facebook-like.png"/>
+                <p style="font-size: 12px;">Liked Videos</p>
+            </span>
+            <span>
+                <img style="width: 25px;" src="https://image.shutterstock.com/image-vector/icon-watch-later-260nw-710534860.jpg"/>
+                <p style="font-size: 12px;">Watch Later</p>
+            </span>
+            <span>
+                <img style="width: 25px;" src="https://img.icons8.com/material-outlined/50/000000/video-gallery.png"/>
+                <p style="font-size: 12px;">Library</p>
+            </span>
+        </div>
+        <div id="videosBox">
+            <div id="sugestions">
+                <div class="sugBoxes"><p>All</p></div>
+                <div class="sugBoxes"><p>Music</p></div>
+                <div class="sugBoxes"><p>Mixes</p></div>
+                <div class="sugBoxes"><p>TMOC</p></div>
+                <div class="sugBoxes"><p>Tom & Jerry</p></div>
+                <div class="sugBoxes"><p>Shinchan Hindi</p></div>
+                <img src="https://img.icons8.com/ios-glyphs/15/000000/chevron-right.png"/>
+            </div>
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <div id="Login">
+                      <h2>Login</h2>
+                    <form  onsubmit="Login(event)" id="Lform">
+                        <input type="text" id="user" placeholder="username" />
+                       
+                        <input type="password" id="pass" placeholder="password" />
+                        <input type="submit" id="btn" value="Login" />
+                    </form>
+                </div>
+                </div>
+              
+              </div>
+              <div id="myModal2" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                  <span class="close2">&times;</span>
+                  <div id="Signup">
+                      <h2>Signup</h2>
+                    <form  onsubmit="Signup(event)" id="signup-form">
+                        <input type="text" id="name" placeholder="Name" required />
+                        <input type="email" id="email" placeholder="Email" required />
+                        <input type="password" id="password" placeholder="Password" required/>
+                        <input type="text" id="username" placeholder="Username" required/>
+                        <input type="number" id="mobile" placeholder="Mobile" required/>
+                        <input type="text" id="description" placeholder="Description" required/>
+                        <input type="submit" id="btn" value="Sign Up"/>
+                    </form>
+              
+                </div>
+                </div>
+              
+              </div>
+              
+            <div id="mainContainer">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="youtube.js"></script>
