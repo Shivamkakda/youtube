@@ -236,7 +236,7 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 /* ---------------------------------------- */
 
-.titleWrapper{
+.titlebox{
 display: flex;
 flex-direction: column;
 gap: 20px;
@@ -248,14 +248,14 @@ width: 100%;
 margin-bottom: 20px;
 cursor: pointer;
 }
-.videoAPIBoxSecoundry{
+.apibox{
 display: flex;
 gap: 2%;
 width: 100%;
 margin-bottom: 20px;
 cursor: pointer;
 }
-.video_titleDiv{
+.title_div{
 word-break: break-word;
 overflow: hidden;
 text-overflow: ellipsis;
@@ -265,7 +265,7 @@ max-height: 42px;
 -webkit-line-clamp: 3;
 -webkit-box-orient: vertical;
 }
-.channel_titleDiv{
+.channelBox{
 display: flex;
 align-items:center ;
 margin: 8px 0;

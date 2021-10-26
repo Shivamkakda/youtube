@@ -4,20 +4,16 @@ let mainContainer = document.getElementById("mainContainer");
 
 var globalData;
 
-// API: AIzaSyA2eQDFN-PFovXa9BWhv9BorJ_DL9fPKbI, AIzaSyBYo-W0gRSFplhy2WC1x8s2wLFszATD7jg, AIzaSyDppDIBLwWIeHL6RICPfthgiBrxo5AQMKE
 
 async function ytAPICall(){
     let query = document.getElementById("searchKeyword").value;
-    // https://api.themoviedb.org/3/search/movie?&api_key=1229e943aec051105219f4ea7a80c817${"&query="}${query}
-
-    // https://youtube.googleapis.com/youtube/v3/search?q=${query}&type=video&key=AIzaSyA2eQDFN-PFovXa9BWhv9BorJ_DL9fPKbI&maxResults=20
 
     let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?q=${query}&type=video&key=AIzaSyDppDIBLwWIeHL6RICPfthgiBrxo5AQMKE&maxResults=20&safeSearch=strict&videoCaption=closedCaption&part=snippet&chart=mostPopular&regionCode=IN`);
 
-    let dataFetched = await res.json();
-    globalData = dataFetched.items
-    console.log("fdata: ", dataFetched.items);
-    return (dataFetched.items);
+    let dFatched = await res.json();
+    globalData = dFatched.items
+    console.log("fdata: ", dFatched.items);
+    return (dFatched.items);
    
 }
 
@@ -33,11 +29,11 @@ function debounce(keyword, delay){
     }
 
     timerId = setTimeout(function(){
-        appendSearchedResult(keyword);
+        searchResult(keyword);
     }, delay)
 }
 
-async function appendSearchedResult(keyword){
+async function searchResult(keyword){
     
     searchedResult.style.display = "flex";
     searchedResult.innerHTML = null;
@@ -48,11 +44,10 @@ async function appendSearchedResult(keyword){
         let div =  document.createElement("div");
         div.setAttribute("class", "searchedResultP");
         div.onclick = () => {
-            showSearchedResultVideo();
+            showSearch();
         }
 
         let title_name = document.createElement("p");
-        // title_name.setAttribute("class", "searchedResultP");
         title_name = title;
 
         div.append(title_name);
@@ -61,7 +56,7 @@ async function appendSearchedResult(keyword){
     });
 }
 
-function showSearchedResultVideo(){
+function showSearch(){
     // searchedResult.innerHTML = null;
     searchedResult.style.display = "none";
     
@@ -71,45 +66,43 @@ function showSearchedResultVideo(){
 
     globalData.forEach(({id:{videoId}, snippet:{title}, snippet:{channelTitle}}) =>{
         let div = document.createElement("div");
-        div.setAttribute("class", "videoAPIBoxSecoundry");
-        // console.log(id, snippet);
+        div.setAttribute("class", "apibox");
 
         let vidDiv = document.createElement("div");
         vidDiv.innerHTML = `<iframe src=https://www.youtube.com/embed/${videoId} title="YouTube video" frameBorder="0" width="380" height="220" allow="fullscreen"></iframe>`;
 
-        let titleWrapper = document.createElement("div");
-        titleWrapper.setAttribute("class", "titleWrapper");
+        let titlebox = document.createElement("div");
+        titlebox.setAttribute("class", "titlebox");
 
-        let video_titleDiv = document.createElement("div");
-        video_titleDiv.setAttribute("class","video_titleDiv");
+        let title_div = document.createElement("div");
+        title_div.setAttribute("class","title_div");
         let video_title = document.createElement("p");
         video_title.innerText = title;
-        video_titleDiv.append(video_title);
+        title_div.append(video_title);
 
-        let channel_titleDiv = document.createElement("div");
-        channel_titleDiv.setAttribute("class", "channel_titleDiv");
-        let channel_title = document.createElement("p");
-        channel_title.innerText = channelTitle;
+        let channelBox = document.createElement("div");
+        channelBox.setAttribute("class", "channelBox");
+        let channlename = document.createElement("p");
+        channlename.innerText = channelTitle;
 
         let img = document.createElement("img");
         img.src="https://img.icons8.com/ios-glyphs/20/000000/checked--v1.png";
-        channel_titleDiv.append(channel_title, img);
+        channelBox.append(channlename, img);
 
-        titleWrapper.append(video_titleDiv, channel_titleDiv);
+        titlebox.append(title_div, channelBox);
 
-        div.append(vidDiv, titleWrapper);
+        div.append(vidDiv, titlebox);
         mainContainer.append(div);
     });
 }
 
 async function mostPopularVideo(){
-    // 
     let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?type=video&key=AIzaSyDppDIBLwWIeHL6RICPfthgiBrxo5AQMKE&maxResults=20&safeSearch=strict&videoCaption=closedCaption&part=snippet&chart=mostPopular&regionCode=IN`);
 
     let data = await res.json();
-    showVideoInBody(data.items);
+    showvid(data.items);
 }
-function showVideoInBody(data){
+function showvid(data){
     
     mainContainer.innerHTML = null;
 
@@ -123,22 +116,22 @@ function showVideoInBody(data){
         let vidDiv = document.createElement("div");
         vidDiv.innerHTML = `<iframe src=https://www.youtube.com/embed/${videoId} title="YouTube video" frameBorder="0" width="280" height="200" allow="fullscreen"></iframe>`;
 
-        let video_titleDiv = document.createElement("div");
-        video_titleDiv.setAttribute("class","video_titleDiv");
+        let title_div = document.createElement("div");
+        title_div.setAttribute("class","title_div");
         let video_title = document.createElement("p");
         video_title.innerText = title;
-        video_titleDiv.append(video_title);
+        title_div.append(video_title);
 
-        let channel_titleDiv = document.createElement("div");
-        channel_titleDiv.setAttribute("class", "channel_titleDiv");
-        let channel_title = document.createElement("p");
-        channel_title.innerText = channelTitle;
+        let channelBox = document.createElement("div");
+        channelBox.setAttribute("class", "channelBox");
+        let channlename = document.createElement("p");
+        channlename.innerText = channelTitle;
 
         let img = document.createElement("img");
         img.src="https://img.icons8.com/ios-glyphs/20/000000/checked--v1.png";
-        channel_titleDiv.append(channel_title, img);
+        channelBox.append(channlename, img);
 
-        div.append(vidDiv, video_titleDiv, channel_titleDiv);
+        div.append(vidDiv, title_div, channelBox);
         mainContainer.append(div);
     })
 }
